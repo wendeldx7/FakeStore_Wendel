@@ -1,14 +1,29 @@
-function validarLogin() {
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
-  var mensagemErro = document.getElementById("mensagem-erro");
+const data = [
+  {
+    id: 1,
+    usuario: "wendel",
+    senha: "123456",
+  },
+];
 
-  if (username === "wendel" && password === "123") {
-    window.location.href = "../index.html";
-    return false;
+const btn = document.querySelector("#login");
+
+console.log(data);
+
+btn.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  const user = document.getElementById("user").value;
+  const password = document.getElementById("password").value;
+  console.log(user, password);
+
+  const login = data.find(
+    (obj) => obj.usuario === user && obj.senha === password
+  );
+
+  if (login) {
+    window.location = "../index.html";
   } else {
-    mensagemErro.textContent = "Nome de usuário ou senha incorretos!";
-    mensagemErro.style.color = "red";
-    return false;
+    alert("Informações incorretas, tente novamente");
   }
-}
+});
